@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class FXApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Text helloWorld = new Text("Hello world");
+        Text helloWorld = new Text("Hej Ella - du er sød -meget meget sød");
         StackPane root = new StackPane(helloWorld);
         stage.setScene(new Scene(root, 300, 120));
         stage.centerOnScreen();
