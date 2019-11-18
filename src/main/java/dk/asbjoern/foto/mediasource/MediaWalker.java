@@ -30,21 +30,18 @@ public class MediaWalker {
 
     private int calculateNextImage(boolean forward) {
         if (forward)
-        if (currentFile == 0) {
-            return forward ? currentFile++ : files.length - 1;
-        } else {
-            return files.length - 1;
+            if (currentFile == 0) {
+                return forward ? currentFile++ : files.length - 1;
+            } else {
+                return files.length - 1;
+            }
+        if (currentFile == files.length - 1) {
+            return forward ? 0 : files.length - 2;
         }
-        if(currentFile == files.length - 1){
-            return forward ?  0 : files.length - 2;
-        }
+        return 0;
 
-
-    {
 
     }
-
-}
 
 
 }
