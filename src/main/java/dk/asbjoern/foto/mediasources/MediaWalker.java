@@ -9,7 +9,7 @@ import java.nio.file.Files;
 public class MediaWalker {
 
 
-    Files.walk(sourcePath).forEach(path -> {}
+//    Files.walk(sourcePath).forEach(path -> {}
 
 
 }
