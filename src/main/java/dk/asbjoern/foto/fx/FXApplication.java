@@ -1,5 +1,6 @@
 package dk.asbjoern.foto.fx;
 
+import dk.asbjoern.foto.mediasource.MediaWalker;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -11,12 +12,24 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 
 @Component
 public class FXApplication extends Application implements FxApp {
+
+
+//    @Autowired
+    private MediaWalker mediaWalker;
+
+    public FXApplication(MediaWalker mediaWalker) {
+        this.mediaWalker = mediaWalker;
+    }
+
+    public FXApplication() {
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
