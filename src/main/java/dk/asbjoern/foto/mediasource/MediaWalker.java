@@ -1,12 +1,12 @@
 package dk.asbjoern.foto.mediasource;
 
-import javafx.scene.image.ImageView;
-
+import java.io.File;
 import java.io.FileNotFoundException;
 
 public interface MediaWalker {
+    void setMediaLocation(File imageDirectory);
 
+    File getNextOrPrev(int prevOrNext) throws FileNotFoundException;
 
-    void getNextOrPrev(ImageView imageView, boolean forward) throws FileNotFoundException;
-
+    File getCurrent();
 }

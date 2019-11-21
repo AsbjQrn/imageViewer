@@ -40,6 +40,11 @@
             <version>1.1-groovy-2.4</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.drewnoakes</groupId>
+            <artifactId>metadata-extractor</artifactId>
+            <version>LATEST</version>
+        </dependency>
     </dependencies>
 
     <build>

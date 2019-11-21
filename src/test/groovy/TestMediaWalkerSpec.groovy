@@ -1,19 +1,20 @@
 import dk.asbjoern.foto.mediasource.MediaWalkerDefault
 import spock.lang.Specification
 
-import java.nio.file.Path
-
 class TestMediaWalkerSpec extends Specification {
 
     def "Test MediaWalker kan køre "() {
 
-        MediaWalkerDefault mediaWalker = new MediaWalkerDefault(Path.of("src/main/resources/imagesJPEG"))
+        setup:
+        MediaWalkerDefault mediaWalker = new MediaWalkerDefault()
+        mediaWalker.setMediaLocation(new File("src/main/resources/imagesJPEG"));
+
         when:
-        int a = 2 + 3
-        mediaWalker.filenext();
+        File file = mediaWalker.getNextOrPrev(0)
+        String absolutePath = file.getAbsolutePath();
 
         then:
-        a == 5
+        absolutePath.contains("src/main/resources/imagesJPEG")
 
 
     }
