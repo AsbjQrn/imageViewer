@@ -4,8 +4,6 @@ import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Metadata;
 import dk.asbjoern.foto.mediasource.MediaWalker;
-import dk.asbjoern.foto.mediasource.MediaWalkerDefault;
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,16 +23,18 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Component
-public class FXApplication extends Application implements FxApp {
+public class FXClient {
 
 
-    private MediaWalker mediaWalker = new MediaWalkerDefault();
+    private MediaWalker mediaWalker;
 
-    public FXApplication() {
+    public FXClient(MediaWalker mediaWalker, FxStarter fxStarter) throws Exception {
+        this.mediaWalker = mediaWalker;
+        fxStarter.getFxApplication();
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
+
+    public void startGUI(Stage stage) throws Exception {
 
 
         //Getting images
@@ -115,8 +115,5 @@ public class FXApplication extends Application implements FxApp {
     }
 
 
-    public void main(String[] args) {
-        launch(FXApplication.class, args);
-    }
 
 }
