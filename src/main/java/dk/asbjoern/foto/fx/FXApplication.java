@@ -16,9 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,7 +38,7 @@ public class FXApplication extends Application implements FxApp {
 
 
         //Getting images
-        mediaWalker.setMediaLocation(new File("src/main/resources/imagesJPEG"));
+//        mediaWalker.setMediaLocation(new File("src/main/resources/imagesJPEG"));
         mediaWalker.setMediaLocation(new File("/media/asbjoern/a78b1484-dfe0-47b8-9e7e-0214b1caad70/fotoOrganiserOutput/2010/JANUARY"));
 
 
@@ -88,10 +86,10 @@ public class FXApplication extends Application implements FxApp {
                     stage.setFullScreen(stage.isFullScreen() ? false : true);
                 }
 
-                if (ke.getCode() == KeyCode.L) {
+                if (ke.getCode() == KeyCode.R) {
                     imageView.setRotate(imageView.getRotate() + 90);
                 }
-                if (ke.getCode() == KeyCode.R) {
+                if (ke.getCode() == KeyCode.L) {
                     imageView.setRotate(imageView.getRotate() - 90);
                 }
 

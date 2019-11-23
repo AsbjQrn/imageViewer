@@ -2,7 +2,9 @@ package dk.asbjoern.foto.exif;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
+import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
+import com.drew.metadata.Tag;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,35 +24,21 @@ public interface ExifService {
         }
     }
 
-    default Optional<Metadata> readExif(File file) {
+    default void readExif(File file) throws ImageProcessingException, IOException {
 
-        Optional<Metadata> metadata = Optional.empty();
+        Metadata metadata = ImageMetadataReader.readMetadata(file);
 
-        try {
-
-            System.out.println(String.format("Reading exif for %s", file.getAbsolutePath()));
-
-//          Frameworket kan i særlige tilfælde kaste en nullPointer selvom der er exifdata.
-            try {
-                ImageMetadataReader.readMetadata(file);
-                metadata = Optional.ofNullable(ImageMetadataReader.readMetadata(file));
-            } catch (NullPointerException e) {
-                System.out.println("Nullpointer i framework i filen: " + file.getAbsolutePath());
-                e.printStackTrace();
+        for (Directory directory : metadata.getDirectories()) {
+            for (Tag tag : directory.getTags()) {
+                System.out.format("[%s] - %s = %s",
+                        directory.getName(), tag.getTagName(), tag.getDescription());
             }
-
-
-
-        } catch (
-                ImageProcessingException e) {
-            handleException(file, e);
-        } catch (
-                IOException e) {
-            handleException(file, e);
+            if (directory.hasErrors()) {
+                for (String error : directory.getErrors()) {
+                    System.err.format("ERROR: %s", error);
+                }
+            }
         }
-
-        return metadata;
-
 
     }
 
